@@ -6,11 +6,18 @@ import Header from './components/Header';
 import List from './components/List';
 
 const App = () => {
+  const delHandler = () => {
+    console.log('del')
+  }
+  const doneHandler = () => {
+    console.log('done')
+  }
+
   return (
     <Layout>
       <Card>
         <Header />
-        <List />
+        <List del={delHandler} done={doneHandler} />
       </Card>
     </Layout>
   );

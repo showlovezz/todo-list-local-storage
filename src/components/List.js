@@ -1,18 +1,21 @@
 import React from 'react';
-import {ListGroup, Button} from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import {ListGroup} from 'react-bootstrap'
 
-const List = () => {
+import ListItem from './ListItem';
+
+const List = ({del, done}) => {
   return (
     <ListGroup>
-      <ListGroup.Item className='d-flex justify-content-between align-items-center'>
-        List Item
-        <div>
-          <Button variant='danger' className='me-4'><i className='fa-solid fa-trash-can' /></Button>
-          <Button variant='success'><i className='fa-solid fa-square-check' /></Button>
-        </div>
-      </ListGroup.Item>
+      <ListItem title='Title 1' delHandler={del} doneHandler={done} />
+      <ListItem title='Title 2' delHandler={del} doneHandler={done} />
     </ListGroup>
   )
+}
+
+List.propTypes = {
+  del: PropTypes.func,
+  done: PropTypes.func,
 }
 
 export default List
