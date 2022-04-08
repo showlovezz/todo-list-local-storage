@@ -9,7 +9,7 @@ const Form = ({todo, change, submit, error}) => {
         <Col md={9}>
           <BootstrapForm.Control size='lg' value={todo} onChange={change} />
         </Col>
-        <Col md={3} className='text-center'>
+        <Col md={3} className='d-flex justify-content-end'>
           <Button type='submit' variant='primary' size='lg'>ADD TODO</Button>
         </Col>
         <Col md={12}>
