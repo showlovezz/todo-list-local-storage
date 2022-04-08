@@ -15,8 +15,17 @@ const App = () => {
       setTodoList((todoList) => todoList.filter((todo) => todo.id !== todoId))
     }
   }
-  const doneHandler = () => {
-    console.log('done')
+  const doneHandler = (todoId) => {
+    const index = todoList.findIndex((item) => item.id === todoId)
+    const duplicateTodoList = [...todoList]
+
+    duplicateTodoList[index] = {
+      id: todoList[index].id,
+      title:  todoList[index].title,
+      done: !todoList[index].done,
+    }
+
+    setTodoList(duplicateTodoList)
   }
   const submitHandler = (e) => {
     e.preventDefault();
