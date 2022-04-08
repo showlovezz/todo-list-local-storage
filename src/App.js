@@ -8,6 +8,7 @@ import Form from './components/Form';
 
 const App = () => {
   const [todo, setTodo] = useState('')
+  const [todoList, setTodoList] = useState([])
 
   const delHandler = () => {
     console.log('del')
@@ -15,13 +16,17 @@ const App = () => {
   const doneHandler = () => {
     console.log('done')
   }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setTodoList([{id: Date.now(), title: todo, done: false}, ...todoList])
+  }
 
   return (
     <Layout>
       <Card>
         <Header />
-        <Form todo={todo} change={(e) => setTodo(e.target.value)} />
-        <List del={delHandler} done={doneHandler} />
+        <Form todo={todo} change={(e) => setTodo(e.target.value)} submit={submitHandler} />
+        <List del={delHandler} done={doneHandler} todoList={todoList} />
       </Card>
     </Layout>
   );

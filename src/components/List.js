@@ -4,11 +4,16 @@ import {ListGroup} from 'react-bootstrap'
 
 import ListItem from './ListItem';
 
-const List = ({del, done}) => {
+const List = ({del, done, todoList}) => {
   return (
     <ListGroup>
-      <ListItem title='Title 1' delHandler={del} doneHandler={done} />
-      <ListItem title='Title 2' delHandler={del} doneHandler={done} />
+      {
+        todoList.map((todo) => {
+          return (
+            <ListItem key={todo.id} title={todo.title} delHandler={del} doneHandler={done} />
+          )
+        })
+      }
     </ListGroup>
   )
 }
@@ -16,6 +21,7 @@ const List = ({del, done}) => {
 List.propTypes = {
   del: PropTypes.func,
   done: PropTypes.func,
+  todoList: PropTypes.array,
 }
 
 export default List
