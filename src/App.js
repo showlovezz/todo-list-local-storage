@@ -9,6 +9,7 @@ import Form from './components/Form';
 const App = () => {
   const [todo, setTodo] = useState('')
   const [todoList, setTodoList] = useState([])
+  const [error, setError] = useState('')
 
   const delHandler = (todoId) => {
     if (window.confirm('Are you sure ?')) {
@@ -29,14 +30,22 @@ const App = () => {
   }
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if (todo.length < 5) {
+      setError('At least 5 word required!')
+      return false
+    }
+
     setTodoList([{id: Date.now(), title: todo, done: false}, ...todoList])
+    setError('')
+    setTodo('')
   }
 
   return (
     <Layout>
       <Card>
         <Header />
-        <Form todo={todo} change={(e) => setTodo(e.target.value)} submit={submitHandler} />
+        <Form todo={todo} change={(e) => setTodo(e.target.value)} submit={submitHandler} error={error} />
         <List del={delHandler} done={doneHandler} todoList={todoList} />
       </Card>
     </Layout>
