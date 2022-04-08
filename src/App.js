@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Layout from './components/Layout';
 import Card from './components/Card';
@@ -10,6 +10,18 @@ const App = () => {
   const [todo, setTodo] = useState('')
   const [todoList, setTodoList] = useState([])
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    const getTodoList = JSON.parse(localStorage.getItem('todoList'))
+
+    if (getTodoList.length !== 0) {
+      setTodoList(getTodoList)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('todoList', JSON.stringify(todoList))
+  }, [todoList])
 
   const delHandler = (todoId) => {
     if (window.confirm('Are you sure ?')) {
