@@ -10,8 +10,10 @@ const App = () => {
   const [todo, setTodo] = useState('')
   const [todoList, setTodoList] = useState([])
 
-  const delHandler = () => {
-    console.log('del')
+  const delHandler = (todoId) => {
+    if (window.confirm('Are you sure ?')) {
+      setTodoList((todoList) => todoList.filter((todo) => todo.id !== todoId))
+    }
   }
   const doneHandler = () => {
     console.log('done')
